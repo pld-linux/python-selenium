@@ -1,7 +1,7 @@
 # TODO
 # - better group
 %define 	module	selenium
-Summary:	-
+Summary:	Python bindings for selenium.
 Name:		python-%{module}
 Version:	2.0rc3
 Release:	0.1
@@ -18,16 +18,13 @@ BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-mock is a Python module that provides a core Mock class. It removes the need
-to create a host of stubs throughout your test suite. After performing an
-action, you can make assertions about which methods / attributes were used and
-arguments they were called with. You can also specify return values and set
-needed attributes in the normal way.
+Selenium Python Client Driver is a Python language binding for Selenium 
+Remote Control (version 1.0 and 2.0).
 
-mock is tested on Python versions 2.4-2.7 and Python 3.
-
-The mock module also provides utility functions / objects to assist with
-testing, particularly monkey patching.
+Currently the remote protocol, Firefox and Chrome for Selenium 2.0 are 
+supported, as well as the Selenium 1.0 bindings. As work will progresses 
+we'll add more "native" drivers.
+        
 
 %prep
 %setup -q -n %{module}-%{version}
@@ -46,7 +43,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
 
 %files
 %defattr(644,root,root,755)
