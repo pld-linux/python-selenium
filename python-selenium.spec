@@ -3,16 +3,16 @@
 
 %define	no_install_post_chrpath	1
 
-%define		_rc	rc3
+%define		_rc	%{nil}
 %define 	module	selenium
 Summary:	Python bindings for selenium.
 Name:		python-%{module}
-Version:	2.0
-Release:	0.3_%{_rc}
+Version:	2.5.0
+Release:	0.1
 License:	BSD-like
 Group:		Development/Languages/Python
 Source0:	http://pypi.python.org/packages/source/s/%{module}/%{module}-%{version}%{_rc}.tar.gz
-# Source0-md5:	c87b8659cdc96da7b9f73ed2db1bcdaa
+# Source0-md5:	5472b4a8e127ecb48230343599ad9e6c
 URL:		http://pypi.python.org/pypi/selenium/
 BuildRequires:	python-distribute
 BuildRequires:	rpm-pythonprov
