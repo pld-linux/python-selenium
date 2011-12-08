@@ -5,32 +5,31 @@
 
 %define		_rc	%{nil}
 %define 	module	selenium
-Summary:	Python bindings for selenium.
+Summary:	Python bindings for selenium
 Name:		python-%{module}
-Version:	2.5.0
+Version:	2.14.0
 Release:	0.1
 License:	BSD-like
 Group:		Development/Languages/Python
 Source0:	http://pypi.python.org/packages/source/s/%{module}/%{module}-%{version}%{_rc}.tar.gz
-# Source0-md5:	5472b4a8e127ecb48230343599ad9e6c
+# Source0-md5:	8de9ee26d699d699f846f14f9a184e60
 URL:		http://pypi.python.org/pypi/selenium/
 BuildRequires:	python-distribute
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
-BuildArch:	noarch
-BuildRoot:	%{tmpdir}/%{name}-%{version}%{_rc}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Selenium Python Client Driver is a Python language binding for Selenium 
-Remote Control (version 1.0 and 2.0).
+Selenium Python Client Driver is a Python language binding for
+Selenium Remote Control (version 1.0 and 2.0).
 
-Currently the remote protocol, Firefox and Chrome for Selenium 2.0 are 
-supported, as well as the Selenium 1.0 bindings. As work will progresses 
-we'll add more "native" drivers.
-        
+Currently the remote protocol, Firefox and Chrome for Selenium 2.0 are
+supported, as well as the Selenium 1.0 bindings. As work will
+progresses we'll add more "native" drivers.
+
 %package -n iceweasel-addon-%{module}
-Summary:	Iceweasel add-on for python selenium.
+Summary:	Iceweasel add-on for python selenium
 Group:		Development
 
 %description -n iceweasel-addon-%{module}
@@ -59,7 +58,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README* docs
+%doc README*
 
 %{py_sitescriptdir}/%{module}
 %if "%{py_ver}" > "2.4"
