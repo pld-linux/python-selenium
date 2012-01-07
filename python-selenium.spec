@@ -10,7 +10,7 @@ Release:	0.1
 License:	BSD-like
 Group:		Development/Languages/Python
 Source0:	http://pypi.python.org/packages/source/s/%{module}/%{module}-%{version}%{_rc}.tar.gz
-# Source0-md5:	8de9ee26d699d699f846f14f9a184e60
+# Source0-md5:	4a90f02edcfefae905796281bf0647c7
 URL:		http://pypi.python.org/pypi/selenium/
 BuildRequires:	python-distribute
 BuildRequires:	rpm-pythonprov
