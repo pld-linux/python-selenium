@@ -1,5 +1,3 @@
-# TODO
-# - better group
 
 %define	no_install_post_chrpath	1
 
@@ -7,7 +5,7 @@
 %define 	module	selenium
 Summary:	Python bindings for selenium
 Name:		python-%{module}
-Version:	2.14.0
+Version:	2.16.0
 Release:	0.1
 License:	BSD-like
 Group:		Development/Languages/Python
@@ -30,7 +28,7 @@ progresses we'll add more "native" drivers.
 
 %package -n iceweasel-addon-%{module}
 Summary:	Iceweasel add-on for python selenium
-Group:		Development
+Group:		X11/Applications/Networking
 
 %description -n iceweasel-addon-%{module}
 Driver for python selenium.
