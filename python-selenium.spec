@@ -5,17 +5,17 @@
 %define 	module	selenium
 Summary:	Python bindings for selenium
 Name:		python-%{module}
-Version:	2.16.0
+Version:	2.17.0
 Release:	0.1
 License:	BSD-like
 Group:		Development/Languages/Python
 Source0:	http://pypi.python.org/packages/source/s/%{module}/%{module}-%{version}%{_rc}.tar.gz
-# Source0-md5:	4a90f02edcfefae905796281bf0647c7
+# Source0-md5:	176a0af40521e5362924d3d5a9824c1f
 URL:		http://pypi.python.org/pypi/selenium/
 BuildRequires:	python-distribute
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.228
-Requires(post,preun):	/sbin/chkconfig
+BuildRequires:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -57,7 +57,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README*
-
 %{py_sitescriptdir}/%{module}
 %if "%{py_ver}" > "2.4"
 %{py_sitescriptdir}/%{module}-*.egg-info
@@ -65,4 +64,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n iceweasel-addon-%{module}
 %defattr(644,root,root,755)
-%{_libdir}/iceweasel/extensions/fxdriver@googlecode.com/
+%{_libdir}/iceweasel/extensions/fxdriver@googlecode.com
