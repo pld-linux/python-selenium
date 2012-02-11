@@ -5,12 +5,12 @@
 %define 	module	selenium
 Summary:	Python bindings for selenium
 Name:		python-%{module}
-Version:	2.17.0
+Version:	2.19.1
 Release:	0.1
 License:	BSD-like
 Group:		Development/Languages/Python
 Source0:	http://pypi.python.org/packages/source/s/%{module}/%{module}-%{version}%{_rc}.tar.gz
-# Source0-md5:	176a0af40521e5362924d3d5a9824c1f
+# Source0-md5:	fc856390a87800c463c7e2d3800e3112
 URL:		http://pypi.python.org/pypi/selenium/
 BuildRequires:	python-distribute
 BuildRequires:	rpm-pythonprov
