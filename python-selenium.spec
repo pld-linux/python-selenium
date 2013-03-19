@@ -6,7 +6,7 @@
 Summary:	Python bindings for selenium
 Name:		python-%{module}
 Version:	2.31.0
-Release:	0.1
+Release:	1
 License:	BSD-like
 Group:		Development/Languages/Python
 Source0:	http://pypi.python.org/packages/source/s/%{module}/%{module}-%{version}%{_rc}.tar.gz
