@@ -6,7 +6,7 @@
 Summary:	Python bindings for selenium
 Name:		python-%{module}
 Version:	2.31.0
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Development/Languages/Python
 Source0:	http://pypi.python.org/packages/source/s/%{module}/%{module}-%{version}%{_rc}.tar.gz
@@ -50,6 +50,18 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_libdir}/iceweasel/extensions/fxdriver@googlecode.com
 unzip $RPM_BUILD_DIR/%{module}-%{version}%{_rc}/py/selenium/webdriver/firefox/webdriver.xpi -d $RPM_BUILD_ROOT%{_libdir}/iceweasel/extensions/fxdriver@googlecode.com
+
+# remove windows binaries
+%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/iceweasel/extensions/fxdriver@googlecode.com/platform/WINNT_x86-msvc
+# remove binaries for incorrect arch
+%ifnarch %{x8664}
+%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/iceweasel/extensions/fxdriver@googlecode.com/platform/Linux_x86_64-gcc3
+%{__rm} -r $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/firefox/amd64
+%endif
+%ifnarch %{ix86}
+%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/iceweasel/extensions/fxdriver@googlecode.com/platform/Linux_x86-gcc3
+%{__rm} -r $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/firefox/x86
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
