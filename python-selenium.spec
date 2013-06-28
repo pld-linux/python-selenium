@@ -2,11 +2,11 @@
 %define	no_install_post_chrpath	1
 
 %define		_rc	%{nil}
-%define 	module	selenium
+%define		module	selenium
 Summary:	Python bindings for selenium
 Name:		python-%{module}
 Version:	2.31.0
-Release:	2
+Release:	3
 License:	BSD-like
 Group:		Development/Languages/Python
 Source0:	http://pypi.python.org/packages/source/s/%{module}/%{module}-%{version}%{_rc}.tar.gz
@@ -29,6 +29,7 @@ progresses we'll add more "native" drivers.
 %package -n iceweasel-addon-%{module}
 Summary:	Iceweasel add-on for python selenium
 Group:		X11/Applications/Networking
+Requires:	iceweasel >= 22.0
 
 %description -n iceweasel-addon-%{module}
 Driver for python selenium.
@@ -48,18 +49,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %py_postclean
 
-install -d $RPM_BUILD_ROOT%{_libdir}/iceweasel/extensions/fxdriver@googlecode.com
-unzip $RPM_BUILD_DIR/%{module}-%{version}%{_rc}/py/selenium/webdriver/firefox/webdriver.xpi -d $RPM_BUILD_ROOT%{_libdir}/iceweasel/extensions/fxdriver@googlecode.com
+install -d $RPM_BUILD_ROOT%{_libdir}/iceweasel/browser/extensions/fxdriver@googlecode.com
+unzip $RPM_BUILD_DIR/%{module}-%{version}%{_rc}/py/selenium/webdriver/firefox/webdriver.xpi -d $RPM_BUILD_ROOT%{_libdir}/iceweasel/browser/extensions/fxdriver@googlecode.com
 
 # remove windows binaries
-%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/iceweasel/extensions/fxdriver@googlecode.com/platform/WINNT_x86-msvc
+%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/iceweasel/browser/extensions/fxdriver@googlecode.com/platform/WINNT_x86-msvc
 # remove binaries for incorrect arch
 %ifnarch %{x8664}
-%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/iceweasel/extensions/fxdriver@googlecode.com/platform/Linux_x86_64-gcc3
+%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/iceweasel/browser/extensions/fxdriver@googlecode.com/platform/Linux_x86_64-gcc3
 %{__rm} -r $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/firefox/amd64
 %endif
 %ifnarch %{ix86}
-%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/iceweasel/extensions/fxdriver@googlecode.com/platform/Linux_x86-gcc3
+%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/iceweasel/browser/extensions/fxdriver@googlecode.com/platform/Linux_x86-gcc3
 %{__rm} -r $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/firefox/x86
 %endif
 
@@ -76,4 +77,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n iceweasel-addon-%{module}
 %defattr(644,root,root,755)
-%{_libdir}/iceweasel/extensions/fxdriver@googlecode.com
+%{_libdir}/iceweasel/browser/extensions/fxdriver@googlecode.com
