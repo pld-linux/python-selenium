@@ -1,3 +1,7 @@
+# TODO:
+# Seems on 64bit selenium looks for wrong arch webdriver
+# Seems to be fixed by ugly hack:
+# [root@appserver4 /usr/share/python2.7/site-packages/selenium/webdriver/firefox]# ln -s ./amd64 x86  
 
 %define	no_install_post_chrpath	1
 
