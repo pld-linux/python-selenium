@@ -9,12 +9,12 @@
 %define		module	selenium
 Summary:	Python bindings for selenium
 Name:		python-%{module}
-Version:	2.39.0
-Release:	2
+Version:	2.44.0
+Release:	1
 License:	BSD-like
 Group:		Development/Languages/Python
 Source0:	http://pypi.python.org/packages/source/s/%{module}/%{module}-%{version}%{_rc}.tar.gz
-# Source0-md5:	3f7aaad3eb52a218854bf0196c9daeda
+# Source0-md5:	8802d73fb989d007ba1b43f070361cd1
 URL:		http://pypi.python.org/pypi/selenium/
 BuildRequires:	python-distribute
 BuildRequires:	rpm-pythonprov
@@ -33,7 +33,7 @@ progresses we'll add more "native" drivers.
 %package -n iceweasel-addon-%{module}
 Summary:	Iceweasel add-on for python selenium
 Group:		X11/Applications/Networking
-Requires:	iceweasel >= 22.0
+Requires:	iceweasel >= 24.0
 
 %description -n iceweasel-addon-%{module}
 Driver for python selenium.
