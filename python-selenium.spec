@@ -39,8 +39,7 @@ supported, as well as the Selenium 1.0 bindings. As work will
 progresses we'll add more "native" drivers.
 
 %package -n python3-%{module}
-Summary:	-
-Summary(pl.UTF-8):	-
+Summary:	Python bindings for selenium
 Group:		Development/Languages/Python
 
 %description -n python3-%{module}
