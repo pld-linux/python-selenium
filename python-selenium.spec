@@ -128,6 +128,8 @@ rm -rf $RPM_BUILD_ROOT
 %{py3_sitescriptdir}/%{module}-%{version}-py*.egg-info
 %endif
 
+%ifarch %{x8664} %{ix86}
 %files -n firefox-addon-%{module}
 %defattr(644,root,root,755)
 %{_datadir}/firefox/browser/extensions/fxdriver@googlecode.com
+%endif
