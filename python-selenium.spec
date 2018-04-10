@@ -12,12 +12,12 @@
 %define		module	selenium
 Summary:	Python bindings for selenium
 Name:		python-%{module}
-Version:	2.47.1
-Release:	6
+Version:	3.11.0
+Release:	1
 License:	BSD-like
 Group:		Development/Languages/Python
-Source0:	http://pypi.python.org/packages/source/s/%{module}/%{module}-%{version}%{_rc}.tar.gz
-# Source0-md5:	7a2e267e8ef5c221bfd6387c2ad5f3bc
+Source0:	https://pypi.debian.net/selenium/%{module}-%{version}%{_rc}.tar.gz
+# Source0-md5:	c565de302e12ffaf7e59c1e47b45bbef
 URL:		http://pypi.python.org/pypi/selenium/
 %if %{with python2}
 BuildRequires:	python-distribute
@@ -84,27 +84,24 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 install -d $RPM_BUILD_ROOT%{_datadir}/firefox/browser/extensions/fxdriver@googlecode.com
-unzip $RPM_BUILD_DIR/%{module}-%{version}%{_rc}/py/selenium/webdriver/firefox/webdriver.xpi -d $RPM_BUILD_ROOT%{_datadir}/firefox/browser/extensions/fxdriver@googlecode.com
+unzip $RPM_BUILD_DIR/%{module}-%{version}%{_rc}/selenium/webdriver/firefox/webdriver.xpi -d $RPM_BUILD_ROOT%{_datadir}/firefox/browser/extensions/fxdriver@googlecode.com
 
-# remove windows binaries
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/firefox/browser/extensions/fxdriver@googlecode.com/platform/WINNT_x86-msvc
 # remove binaries for incorrect arch
 %ifnarch %{x8664}
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/firefox/browser/extensions/fxdriver@googlecode.com/platform/Linux_x86_64-gcc3
 %if %{with python2}
-%{__rm} -r $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/firefox/amd64
+%{__rm} -r $RPM_BUILD_ROOT%{py_sitedir}/%{module}/webdriver/firefox/amd64
 %endif
 %if %{with python3}
-%{__rm} -r $RPM_BUILD_ROOT%{py3_sitescriptdir}/%{module}/webdriver/firefox/amd64
+%{__rm} -r $RPM_BUILD_ROOT%{py3_sitedir}/%{module}/webdriver/firefox/amd64
 %endif
 %endif
+
 %ifnarch %{ix86}
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/firefox/browser/extensions/fxdriver@googlecode.com/platform/Linux_x86-gcc3
 %if %{with python2}
-%{__rm} -r $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/firefox/x86
+%{__rm} -r $RPM_BUILD_ROOT%{py_sitedir}/%{module}/webdriver/firefox/x86
 %endif
 %if %{with python3}
-%{__rm} -r $RPM_BUILD_ROOT%{py3_sitescriptdir}/%{module}/webdriver/firefox/x86
+%{__rm} -r $RPM_BUILD_ROOT%{py3_sitedir}/%{module}/webdriver/firefox/x86
 %endif
 %endif
 
@@ -114,7 +111,12 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %files
 %defattr(644,root,root,755)
-#%%doc README*
+%dir %{py_sitedir}/selenium
+%dir %{py_sitedir}/selenium/webdriver
+%{py_sitedir}/selenium/webdriver/remote
+%dir %{py_sitedir}/selenium/webdriver/firefox
+%dir %{py_sitedir}/selenium/webdriver/firefox/[ai]*
+%attr(755,root,root) %{py_sitedir}/selenium/webdriver/firefox/*/x_ignore_nofocus.so
 %{py_sitescriptdir}/%{module}
 %if "%{py_ver}" > "2.4"
 %{py_sitescriptdir}/%{module}-*.egg-info
@@ -124,6 +126,12 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python3}
 %files -n python3-%{module}
 %defattr(644,root,root,755)
+%dir %{py3_sitedir}/selenium
+%dir %{py3_sitedir}/selenium/webdriver
+%{py3_sitedir}/selenium/webdriver/remote
+%dir %{py3_sitedir}/selenium/webdriver/firefox
+%dir %{py3_sitedir}/selenium/webdriver/firefox/[ai]*
+%attr(755,root,root) %{py3_sitedir}/selenium/webdriver/firefox/*/x_ignore_nofocus.so
 %{py3_sitescriptdir}/%{module}
 %{py3_sitescriptdir}/%{module}-%{version}-py*.egg-info
 %endif
