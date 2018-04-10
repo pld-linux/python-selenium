@@ -13,7 +13,7 @@
 Summary:	Python bindings for selenium
 Name:		python-%{module}
 Version:	3.11.0
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Development/Languages/Python
 Source0:	https://pypi.debian.net/selenium/%{module}-%{version}%{_rc}.tar.gz
@@ -115,7 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py_sitedir}/selenium/webdriver
 %{py_sitedir}/selenium/webdriver/remote
 %dir %{py_sitedir}/selenium/webdriver/firefox
-%dir %{py_sitedir}/selenium/webdriver/firefox/[ai]*
+%dir %{py_sitedir}/selenium/webdriver/firefox/[ax]*
 %attr(755,root,root) %{py_sitedir}/selenium/webdriver/firefox/*/x_ignore_nofocus.so
 %{py_sitescriptdir}/%{module}
 %if "%{py_ver}" > "2.4"
@@ -130,7 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py3_sitedir}/selenium/webdriver
 %{py3_sitedir}/selenium/webdriver/remote
 %dir %{py3_sitedir}/selenium/webdriver/firefox
-%dir %{py3_sitedir}/selenium/webdriver/firefox/[ai]*
+%dir %{py3_sitedir}/selenium/webdriver/firefox/[ax]*
 %attr(755,root,root) %{py3_sitedir}/selenium/webdriver/firefox/*/x_ignore_nofocus.so
 %{py3_sitescriptdir}/%{module}
 %{py3_sitescriptdir}/%{module}-%{version}-py*.egg-info
