@@ -13,7 +13,7 @@
 Summary:	Python bindings for selenium
 Name:		python-%{module}
 Version:	3.11.0
-Release:	3
+Release:	4
 License:	BSD-like
 Group:		Development/Languages/Python
 Source0:	https://pypi.debian.net/selenium/%{module}-%{version}%{_rc}.tar.gz
@@ -90,18 +90,22 @@ unzip $RPM_BUILD_DIR/%{module}-%{version}%{_rc}/selenium/webdriver/firefox/webdr
 %ifnarch %{x8664}
 %if %{with python2}
 %{__rm} -r $RPM_BUILD_ROOT%{py_sitedir}/%{module}/webdriver/firefox/amd64
+%{__rm} -r $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/firefox/amd64
 %endif
 %if %{with python3}
 %{__rm} -r $RPM_BUILD_ROOT%{py3_sitedir}/%{module}/webdriver/firefox/amd64
+%{__rm} -r $RPM_BUILD_ROOT%{py3_sitescriptdir}/%{module}/webdriver/firefox/amd64
 %endif
 %endif
 
 %ifnarch %{ix86}
 %if %{with python2}
 %{__rm} -r $RPM_BUILD_ROOT%{py_sitedir}/%{module}/webdriver/firefox/x86
+%{__rm} -r $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/firefox/x86
 %endif
 %if %{with python3}
 %{__rm} -r $RPM_BUILD_ROOT%{py3_sitedir}/%{module}/webdriver/firefox/x86
+%{__rm} -r $RPM_BUILD_ROOT%{py3_sitescriptdir}/%{module}/webdriver/firefox/x86
 %endif
 %endif
 
