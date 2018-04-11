@@ -6,13 +6,14 @@
 Summary:	Python bindings for selenium
 Name:		python-%{module}
 Version:	3.11.0
-Release:	4
+Release:	5
 License:	BSD-like
 Group:		Development/Languages/Python
 Source0:	https://pypi.debian.net/selenium/%{module}-%{version}%{_rc}.tar.gz
 # Source0-md5:	c565de302e12ffaf7e59c1e47b45bbef
 Patch0:		x-ignore-nofocus-path.patch
 Patch1:		xpi-path.patch
+Patch2:		0002-Pick-debian-location-of-chromedriver-from-chromium-d.patch
 URL:		http://pypi.python.org/pypi/selenium/
 %if %{with python2}
 BuildRequires:	python-distribute
@@ -50,6 +51,7 @@ progresses we'll add more "native" drivers.
 %setup -q -n %{module}-%{version}%{_rc}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %if %{with python2}

@@ -1,0 +1,22 @@
+From: Sascha Girrulat <sascha@girrulat.de>
+Date: Sat, 9 Dec 2017 18:08:09 +0100
+Subject: Pick debian location of chromedriver from chromium-driver package
+
+Closes: #854732
+---
+ selenium/webdriver/chrome/webdriver.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/selenium/webdriver/chrome/webdriver.py b/selenium/webdriver/chrome/webdriver.py
+index 0253340..4724035 100644
+--- a/selenium/webdriver/chrome/webdriver.py
++++ b/selenium/webdriver/chrome/webdriver.py
+@@ -30,7 +30,7 @@ class WebDriver(RemoteWebDriver):
+     http://chromedriver.storage.googleapis.com/index.html
+     """
+ 
+-    def __init__(self, executable_path="chromedriver", port=0,
++    def __init__(self, executable_path="/usr/bin/chromedriver", port=0,
+                  options=None, service_args=None,
+                  desired_capabilities=None, service_log_path=None,
+                  chrome_options=None):
