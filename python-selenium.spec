@@ -6,7 +6,7 @@
 Summary:	Python bindings for selenium
 Name:		python-%{module}
 Version:	3.11.0
-Release:	5
+Release:	6
 License:	BSD-like
 Group:		Development/Languages/Python
 Source0:	https://pypi.debian.net/selenium/%{module}-%{version}%{_rc}.tar.gz
@@ -77,11 +77,13 @@ rm -rf $RPM_BUILD_ROOT
 
 # driver is in selenium-firefoxdriver.spec
 %if %{with python2}
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/%{module}/webdriver/remote/*.js
 %{__rm} -r $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/firefox/amd64
 %{__rm} -r $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/firefox/x86
 %endif
 
 %if %{with python3}
+%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/%{module}/webdriver/remote/*.js
 %{__rm} -r $RPM_BUILD_ROOT%{py3_sitescriptdir}/%{module}/webdriver/firefox/amd64
 %{__rm} -r $RPM_BUILD_ROOT%{py3_sitescriptdir}/%{module}/webdriver/firefox/x86
 %endif
@@ -92,9 +94,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %files
 %defattr(644,root,root,755)
-%dir %{py_sitedir}/selenium
-%dir %{py_sitedir}/selenium/webdriver
-%{py_sitedir}/selenium/webdriver/remote
 %{py_sitescriptdir}/%{module}
 %if "%{py_ver}" > "2.4"
 %{py_sitescriptdir}/%{module}-*.egg-info
@@ -104,9 +103,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python3}
 %files -n python3-%{module}
 %defattr(644,root,root,755)
-%dir %{py3_sitedir}/selenium
-%dir %{py3_sitedir}/selenium/webdriver
-%{py3_sitedir}/selenium/webdriver/remote
 %{py3_sitescriptdir}/%{module}
 %{py3_sitescriptdir}/%{module}-%{version}-py*.egg-info
 %endif
