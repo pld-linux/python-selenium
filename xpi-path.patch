@@ -1,0 +1,23 @@
+diff --git a/selenium/webdriver/firefox/firefox_profile.py b/selenium/webdriver/firefox/firefox_profile.py
+index 6f8293d..3dae348 100644
+--- a/selenium/webdriver/firefox/firefox_profile.py
++++ b/selenium/webdriver/firefox/firefox_profile.py
+@@ -37,7 +37,7 @@ from selenium.webdriver.common.proxy import ProxyType
+ from selenium.common.exceptions import WebDriverException
+ 
+ 
+-WEBDRIVER_EXT = "webdriver.xpi"
++WEBDRIVER_EXT = "/usr/share/firefoxdriver/webdriver.xpi"
+ WEBDRIVER_PREFERENCES = "webdriver_prefs.json"
+ EXTENSION_NAME = "fxdriver@googlecode.com"
+ 
+@@ -246,9 +246,6 @@ class FirefoxProfile(object):
+             - path: url, absolute path to .xpi, or directory of addons
+             - unpack: whether to unpack unless specified otherwise in the install.rdf
+         """
+-        if addon == WEBDRIVER_EXT:
+-            addon = os.path.join(os.path.dirname(__file__), WEBDRIVER_EXT)
+-
+         tmpdir = None
+         xpifile = None
+         if addon.endswith('.xpi'):
