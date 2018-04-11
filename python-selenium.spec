@@ -13,7 +13,7 @@
 Summary:	Python bindings for selenium
 Name:		python-%{module}
 Version:	3.11.0
-Release:	2
+Release:	3
 License:	BSD-like
 Group:		Development/Languages/Python
 Source0:	https://pypi.debian.net/selenium/%{module}-%{version}%{_rc}.tar.gz
@@ -114,9 +114,11 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py_sitedir}/selenium
 %dir %{py_sitedir}/selenium/webdriver
 %{py_sitedir}/selenium/webdriver/remote
+%ifarch %{x8664} %{ix86}
 %dir %{py_sitedir}/selenium/webdriver/firefox
 %dir %{py_sitedir}/selenium/webdriver/firefox/[ax]*
 %attr(755,root,root) %{py_sitedir}/selenium/webdriver/firefox/*/x_ignore_nofocus.so
+%endif
 %{py_sitescriptdir}/%{module}
 %if "%{py_ver}" > "2.4"
 %{py_sitescriptdir}/%{module}-*.egg-info
@@ -129,9 +131,11 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py3_sitedir}/selenium
 %dir %{py3_sitedir}/selenium/webdriver
 %{py3_sitedir}/selenium/webdriver/remote
+%ifarch %{x8664} %{ix86}
 %dir %{py3_sitedir}/selenium/webdriver/firefox
 %dir %{py3_sitedir}/selenium/webdriver/firefox/[ax]*
 %attr(755,root,root) %{py3_sitedir}/selenium/webdriver/firefox/*/x_ignore_nofocus.so
+%endif
 %{py3_sitescriptdir}/%{module}
 %{py3_sitescriptdir}/%{module}-%{version}-py*.egg-info
 %endif
