@@ -1,65 +1,81 @@
+#
+# Conditional build:
 %bcond_without	python2 # CPython 2.x module
 %bcond_without	python3 # CPython 3.x module
 
-%define		_rc	%{nil}
 %define		module	selenium
-Summary:	Python bindings for selenium
+Summary:	Python bindings for Selenium
+Summary(pl.UTF-8):	Wiązania Pythona do Selenium
 Name:		python-%{module}
-Version:	3.11.0
-Release:	8
-License:	BSD-like
+Version:	3.141.0
+Release:	1
+License:	Apache v2.0
 Group:		Development/Languages/Python
-Source0:	https://pypi.debian.net/selenium/%{module}-%{version}%{_rc}.tar.gz
-# Source0-md5:	c565de302e12ffaf7e59c1e47b45bbef
-Patch0:		x-ignore-nofocus-path.patch
-Patch1:		xpi-path.patch
-Patch2:		0002-Pick-debian-location-of-chromedriver-from-chromium-d.patch
-URL:		http://pypi.python.org/pypi/selenium/
+#Source0Download: https://pypi.org/simple/selenium/
+Source0:	https://files.pythonhosted.org/packages/source/s/selenium/%{module}-%{version}.tar.gz
+# Source0-md5:	274693e383ff507df7ee190359828c84
+Patch0:		xpi-path.patch
+Patch1:		0002-Pick-debian-location-of-chromedriver-from-chromium-d.patch
+URL:		https://pypi.org/project/selenium/
 %if %{with python2}
-BuildRequires:	python-distribute
+BuildRequires:	python-modules >= 1:2.7
+BuildRequires:	python-setuptools
 %endif
 %if %{with python3}
-BuildRequires:	python3-distribute
+BuildRequires:	python3-modules >= 1:3.4
+BuildRequires:	python3-setuptools
 %endif
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.710
+BuildRequires:	rpmbuild(macros) >= 1.714
 BuildRequires:	unzip
+Suggests:	chromedriver
+Suggests:	selenium-firefoxdriver
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Selenium Python Client Driver is a Python language binding for
-Selenium Remote Control (version 1.0 and 2.0).
+Python language bindings for Selenium WebDriver.
 
-Currently the remote protocol, Firefox and Chrome for Selenium 2.0 are
-supported, as well as the Selenium 1.0 bindings. As work will
-progresses we'll add more "native" drivers.
+The selenium package is used to automate web browser interaction from
+Python.
+
+%description -l pl.UTF-8
+Wiązania Pythona do sterownika Selenium WebDriver.
+
+Pakiet selenium służy automatyzacji interakcji z przeglądarką WWW z
+poziomu Pythona.
 
 %package -n python3-%{module}
-Summary:	Python bindings for selenium
+Summary:	Python bindings for Selenium
+Summary(pl.UTF-8):	Wiązania Pythona do Selenium
 Group:		Development/Languages/Python
+Suggests:	chromedriver
+Suggests:	selenium-firefoxdriver
 
 %description -n python3-%{module}
-Selenium Python Client Driver is a Python language binding for
-Selenium Remote Control (version 1.0 and 2.0).
+Python language bindings for Selenium WebDriver.
 
-Currently the remote protocol, Firefox and Chrome for Selenium 2.0 are
-supported, as well as the Selenium 1.0 bindings. As work will
-progresses we'll add more "native" drivers.
+The selenium package is used to automate web browser interaction from
+Python.
+
+%description -n python3-%{module} -l pl.UTF-8
+Wiązania Pythona do sterownika Selenium WebDriver.
+
+Pakiet selenium służy automatyzacji interakcji z przeglądarką WWW z
+poziomu Pythona.
 
 %prep
-%setup -q -n %{module}-%{version}%{_rc}
+%setup -q -n %{module}-%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %if %{with python2}
-%py_build %{?with_tests:test}
+%py_build
 %endif
 
 %if %{with python3}
-%py3_build %{?with_tests:test}
+%py3_build
 %endif
 
 %install
@@ -77,13 +93,15 @@ rm -rf $RPM_BUILD_ROOT
 
 # driver is in selenium-firefoxdriver.spec
 %if %{with python2}
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/%{module}/webdriver/remote/*.js
+%{__rm} $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/remote/*.js
+%{__rm} $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/firefox/webdriver.xpi
 %{__rm} -r $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/firefox/amd64
 %{__rm} -r $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/firefox/x86
 %endif
 
 %if %{with python3}
-%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/%{module}/webdriver/remote/*.js
+%{__rm} $RPM_BUILD_ROOT%{py3_sitescriptdir}/%{module}/webdriver/remote/*.js
+%{__rm} $RPM_BUILD_ROOT%{py3_sitescriptdir}/%{module}/webdriver/firefox/webdriver.xpi
 %{__rm} -r $RPM_BUILD_ROOT%{py3_sitescriptdir}/%{module}/webdriver/firefox/amd64
 %{__rm} -r $RPM_BUILD_ROOT%{py3_sitescriptdir}/%{module}/webdriver/firefox/x86
 %endif
@@ -94,15 +112,15 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %files
 %defattr(644,root,root,755)
+%doc CHANGES README.rst
 %{py_sitescriptdir}/%{module}
-%if "%{py_ver}" > "2.4"
-%{py_sitescriptdir}/%{module}-*.egg-info
-%endif
+%{py_sitescriptdir}/%{module}-%{version}-py*.egg-info
 %endif
 
 %if %{with python3}
 %files -n python3-%{module}
 %defattr(644,root,root,755)
+%doc CHANGES README.rst
 %{py3_sitescriptdir}/%{module}
 %{py3_sitescriptdir}/%{module}-%{version}-py*.egg-info
 %endif
