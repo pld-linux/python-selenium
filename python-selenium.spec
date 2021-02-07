@@ -8,7 +8,7 @@ Summary:	Python bindings for Selenium
 Summary(pl.UTF-8):	Wiązania Pythona do Selenium
 Name:		python-%{module}
 Version:	3.141.0
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Development/Languages/Python
 #Source0Download: https://pypi.org/simple/selenium/
@@ -93,14 +93,12 @@ rm -rf $RPM_BUILD_ROOT
 
 # driver is in selenium-firefoxdriver.spec
 %if %{with python2}
-%{__rm} $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/remote/*.js
 %{__rm} $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/firefox/webdriver.xpi
 %{__rm} -r $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/firefox/amd64
 %{__rm} -r $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module}/webdriver/firefox/x86
 %endif
 
 %if %{with python3}
-%{__rm} $RPM_BUILD_ROOT%{py3_sitescriptdir}/%{module}/webdriver/remote/*.js
 %{__rm} $RPM_BUILD_ROOT%{py3_sitescriptdir}/%{module}/webdriver/firefox/webdriver.xpi
 %{__rm} -r $RPM_BUILD_ROOT%{py3_sitescriptdir}/%{module}/webdriver/firefox/amd64
 %{__rm} -r $RPM_BUILD_ROOT%{py3_sitescriptdir}/%{module}/webdriver/firefox/x86
