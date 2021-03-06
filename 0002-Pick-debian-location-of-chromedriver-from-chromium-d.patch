@@ -19,4 +19,4 @@ index 0253340..4724035 100644
 +    def __init__(self, executable_path="/usr/bin/chromedriver", port=0,
                   options=None, service_args=None,
                   desired_capabilities=None, service_log_path=None,
-                  chrome_options=None):
+                  chrome_options=None, keep_alive=True):
