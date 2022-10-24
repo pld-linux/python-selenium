@@ -7,6 +7,7 @@
 Summary:	Python bindings for Selenium
 Summary(pl.UTF-8):	Wiązania Pythona do Selenium
 Name:		python-%{module}
+# keep 3.x here for python2 support
 Version:	3.141.0
 Release:	7
 License:	Apache v2.0
