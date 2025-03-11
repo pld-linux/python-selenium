@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	Wiązania Pythona do Selenium
 Name:		python-%{module}
 # keep 3.x here for python2 support
 Version:	3.141.0
-Release:	8
+Release:	9
 License:	Apache v2.0
 Group:		Development/Languages/Python
 #Source0Download: https://pypi.org/simple/selenium/
